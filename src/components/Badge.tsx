@@ -4,7 +4,6 @@ import { Show, onCleanup, onMount } from 'solid-js';
 type Props = {
   footer?: FooterTheme;
   botContainer: HTMLDivElement | undefined;
-  poweredByTextColor?: string;
   badgeBackgroundColor?: string;
 };
 

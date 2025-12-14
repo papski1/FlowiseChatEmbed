@@ -150,7 +150,6 @@ export type BotProps = {
   userMessage?: UserMessageTheme;
   textInput?: TextInputTheme;
   feedback?: FeedbackTheme;
-  poweredByTextColor?: string;
   badgeBackgroundColor?: string;
   bubbleBackgroundColor?: string;
   bubbleTextColor?: string;
@@ -611,7 +610,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
   // Define the audioRef
   let audioRef: HTMLAudioElement | undefined;
   // CDN link for default receive sound
-  const defaultReceiveSound = 'https://cdn.jsdelivr.net/gh/FlowiseAI/FlowiseChatEmbed@latest/src/assets/receive_message.mp3';
+  const defaultReceiveSound = 'https://cdn.jsdelivr.net/gh/papski1/FlowiseChatEmbed@latest/src/assets/receive_message.mp3';
   const playReceiveSound = () => {
     if (props.textInput?.receiveMessageSound) {
       let audioSrc = defaultReceiveSound;
@@ -1786,7 +1785,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     if (!chunk) return;
 
     try {
-      currentState.sourceBuffer.appendBuffer(chunk);
+      currentState.sourceBuffer.appendBuffer(chunk as BufferSource);
       setTtsStreamingState((prevState) => ({
         ...prevState,
         chunkQueue: prevState.chunkQueue.slice(1),
@@ -1868,7 +1867,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
               const state = ttsStreamingState();
               if (state.sourceBuffer && !state.sourceBuffer.updating) {
                 try {
-                  state.sourceBuffer.appendBuffer(chunk);
+                  state.sourceBuffer.appendBuffer(chunk as BufferSource);
                   if (index === remainingChunks.length - 1) {
                     setTimeout(() => {
                       const finalState = ttsStreamingState();
